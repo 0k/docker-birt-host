@@ -8,11 +8,12 @@ RUN apt-get -y upgrade
 RUN apt-get -y --force-yes install wget
 RUN apt-get -y --force-yes install tomcat7
 RUN apt-get -y --force-yes install unzip
-RUN wget "http://download.eclipse.org/birt/downloads/drops/R-R1-4_4_1-201409161320/birt-runtime-4_4_1-20140916.zip" -P /var/lib/tomcat7/webapps
-RUN unzip "/var/lib/tomcat7/webapps/birt-runtime-4_4_1-20140916.zip" -d /var/lib/tomcat7/webapps/birt-runtime
-RUN mv "/var/lib/tomcat7/webapps/birt-runtime/birt-runtime-4_4_1/WebViewerExample" "/var/lib/tomcat7/webapps/birt"
-RUN rm /var/lib/tomcat7/webapps/birt-runtime-4_4_1-20140916.zip
-RUN rm -f -r "/var/lib/tomcat7/webapps/birt-runtime"
+RUN cd /tmp && \
+    wget "http://www.eclipse.org/downloads/download.php?file=/birt/downloads/drops/M-R1-4_5_0RC4-201506092134/birt-runtime-4.5.0-20150609.zip" -O birt-runtime.zip && \
+    unzip birt-runtime.zip && \
+    mv birt-runtime-*/WebViewerExample /var/lib/tomcat7/webapps/birt && \
+    rm birt-runtime.zip && \
+    rm -rf birt-runtime-*
 
 RUN cd /usr/share/tomcat7 && ln -s /etc/tomcat7 conf
 RUN ln -s /var/lib/tomcat7/webapps/ /usr/share/tomcat7/webapps
