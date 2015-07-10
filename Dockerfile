@@ -2,7 +2,6 @@ FROM debian:jessie
 
 #Update
 RUN apt-get update
-RUN apt-get -y upgrade
 
 #Pre-Installation
 RUN apt-get -y --force-yes install wget
