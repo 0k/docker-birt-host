@@ -30,6 +30,7 @@ RUN tar -xf "/var/lib/tomcat7/webapps/birt/WEB-INF/lib/mysql-connector-java-5.0.
 
 # Map Reports folder
 VOLUME /var/lib/tomcat7/webapps/birt/reports
+VOLUME /var/lib/tomcat7/webapps/birt/logs
 
 # Modify birt viewer setting for reports path issue
 RUN perl -i -p0e "s/BIRT_VIEWER_WORKING_FOLDER<\/param-name>\n\t\t<param-value>/BIRT_VIEWER_WORKING_FOLDER<\/param-name>\n\t\t<param-value>\/var\/lib\/tomcat7\/webapps\/birt\//smg" /var/lib/tomcat7/webapps/birt/WEB-INF/web.xml
