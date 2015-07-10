@@ -15,7 +15,7 @@ RUN cd /tmp && \
     rm birt-runtime.zip && \
     rm -rf birt-runtime-*
 
-RUN cd /usr/share/tomcat7 && ln -s /etc/tomcat7 conf
+RUN ln -s /etc/tomcat7 /usr/share/tomcat7/conf
 RUN ln -s /var/lib/tomcat7/webapps/ /usr/share/tomcat7/webapps
 
 #Add JDBC
